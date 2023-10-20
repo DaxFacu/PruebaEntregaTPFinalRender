@@ -1,0 +1,9 @@
+const EErrors = {
+  ROUTING_ERROR: 0,
+  INVALID_TYPES_ERROR: 1,
+  DATABASES_ERROR: 2,
+  CREATE_PRODUCT_ERROR: 3,
+  CREATE_CART_ERROR: 4,
+};
+
+export default EErrors;

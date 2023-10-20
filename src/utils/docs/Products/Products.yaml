@@ -1,0 +1,93 @@
+paths:
+  /api/products:
+    get:
+      summary: Obtiene todos los products
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos fueron devueltos satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Products"
+        "400":
+          description: No se pudo traer los productos.
+        "500":
+          description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
+  /api/products/{uid}:
+    get:
+      summary: Obtiene un producto
+      tags:
+        - Products
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario a buscar (ejemplo de id 648e5ee1c48bc1f4038c0bc2)
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Products"
+        "400":
+          description: No se pudo encontrar el producto
+components:
+  schemas:
+    Success:
+      type: object
+      properties:
+        status:
+          type: String
+          description: success or error
+        message:
+          type: String
+          description: aclarando que ocurrio
+      example:
+        status: success
+        message: User updated
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        title:
+          type: String
+          description: Titulo
+        descripcion:
+          type: String
+          description: Descripción
+        code:
+          type: String
+          description: Código
+        price:
+          type: Number
+          description: Precio
+        status:
+          type: String
+          description: Disponibilidad
+        stock:
+          type: Number
+          description: Cantidad disponible
+        category:
+          type: String
+          description: Categoría
+        thumbnail:
+          type: String
+          description: Imagen
+      example:
+        title: Manzana
+        descripcion: manzana
+        code: 0021
+        price: 12.21
+        status: Disponible
+        stock: 12
+        category: Frutas
+        thumbnail: https://img.com

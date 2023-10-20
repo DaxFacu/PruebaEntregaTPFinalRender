@@ -1,0 +1,52 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "type": "module",
+  "nodemonConfig": {
+    "ext": "js",
+    "ignore": [
+      "*.ProductManager.js",
+      "db/*"
+    ],
+    "delay": "2"
+  },
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon -e yaml,js ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "bcrypt": "^5.1.0",
+    "connect-mongo": "^5.0.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.2.3",
+    "mongoose-paginate-v2": "^1.7.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
+    "passport": "^0.6.0",
+    "passport-github2": "^0.1.12",
+    "passport-local": "^1.0.0",
+    "session-file-store": "^1.5.0",
+    "socket.io": "^4.6.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.10.0",
+    "nodemailer": "^6.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaxFacu/PrimeraEntregaFinal_Lasta.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DaxFacu/PrimeraEntregaFinal_Lasta/issues"
+  },
+  "homepage": "https://github.com/DaxFacu/PrimeraEntregaFinal_Lasta#readme",
+  "description": ""
+}

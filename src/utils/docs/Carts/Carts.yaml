@@ -1,0 +1,146 @@
+paths:
+  /api/carts:
+    post:
+      summary: Crea un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Carrito creado
+          content:
+
+        "400":
+          description: No se pudo crear el carrito
+    get:
+      summary: Obtiene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los carritos fueron devueltos satisfactoriamente
+          content:
+        "400":
+          description: No se pudo crear el carrito.
+  /api/carts/{uid}:
+    get:
+      summary: Obtiene un carrito
+      tags:
+        - Carts
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del carrito a buscar a buscar (ejemplo 64fcf6bbf606e9ea24e3db77)
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Carts"
+        "400":
+          description: No se encontró el carrito.
+    put:
+      summary: Actualizar un carrito a partir de un array de productos
+      tags:
+        - Carts
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del carrito a buscar (ejemplo 64fcf6bbf606e9ea24e3db77)
+          schema:
+            $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateCarts"
+      responses:
+        "200":
+          description: Carrito modificado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Success"
+        "400":
+          description: No se pudo actualizar el carrito
+
+    delete:
+      summary: Elimina los productos de un carrito
+      tags:
+        - Carts
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del carrito a eliminar sus productos (ejemplo 64fcf6bbf606e9ea24e3db77)
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Carts"
+        "400":
+          description: No se pudo eliminar los productos del carrito.
+components:
+  schemas:
+    Success:
+      type: object
+      properties:
+        status:
+          type: String
+          description: success or error
+        message:
+          type: String
+          description: aclarando que ocurrio
+      example:
+        status: success
+        message: Carrito actualizado
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: array
+          properties:
+            product:
+              type: object
+              description: objeto agregado al carrito
+            quantity:
+              type: Number
+              description: cantidad de objetos agregados
+
+      example:
+        _id: "ObjectId(64fcf6bbf606e9ea24e3db77)"
+
+  requestBodies:
+    updateCarts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: array
+          properties:
+            product:
+              type: object
+              description: objeto agregado al carrito
+            quantity:
+              type: Number
+              description: cantidad de objetos agregados
+
+      example:
+        _id: "ObjectId(64fcf6bbf606e9ea24e3db77)"
+        products:
+          product: "ObjectId(648e5ee1c48bc1f4038c0bc2)"
+          quantity: "Number(23)"

@@ -1,0 +1,4 @@
+node_modules
+.git1
+.env.production
+.env.development

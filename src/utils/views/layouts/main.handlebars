@@ -1,0 +1,35 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+  </head>
+  <body>
+
+    {{{body}}}
+
+  </body>
+  <script>/*document.getElementById("ButtonCart").addEventListener("click",
+    function () { const cartId = this.getAttribute("data-cart-id"); const
+    productId = this.getAttribute("data-product-id"); const formData = new
+    FormData(); formData.append("cartId", cartId); formData.append("productId",
+    productId); fetch(`/api/carts/${cartId}/products/${productId}`, { method:
+    "PUT", body: formData, }) .then((response) => response.json()) .then((data)
+    => { console.log(data); }) .catch((error) => console.error("Error:",
+    error)); });*/ // Espera a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() { var
+    botonesCarrito = document.querySelectorAll('.botonCarrito');
+    botonesCarrito.forEach(function(boton) { boton.addEventListener('click',
+    function() { var cartId = this.getAttribute("data-cart-id"); var productId =
+    this.getAttribute("data-product-id"); agregarProductoAlCarrito(cartId,
+    productId); }); }); }); function agregarProductoAlCarrito(cartId, productId)
+    {const formData = new FormData(); formData.append("cartId", cartId);
+    formData.append("productId", productId);
+    fetch(`/api/carts/${cartId}/products/${productId}`, { method: "PUT", body:
+    formData, }) .then((response) => response.json()) .then((data) => {
+    console.log(data); }) .catch((error) => console.error("Error:", error));}
+
+  </script>
+</html>
